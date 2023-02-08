@@ -1,0 +1,2 @@
+package sit.int204.classicmodelsservice.entities;public class Employee {
+}
