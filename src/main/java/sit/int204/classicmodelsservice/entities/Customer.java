@@ -1,2 +1,4 @@
-package sit.int204.classicmodelsservice.entities;public class Customer {
+package sit.int204.classicmodelsservice.entities;
+
+public class Customer {
 }
