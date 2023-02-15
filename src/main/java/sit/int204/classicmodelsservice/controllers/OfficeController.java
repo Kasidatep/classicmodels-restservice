@@ -44,4 +44,9 @@ public class OfficeController {
     public Set<Employee> getEmployeeByOfficeCode(@PathVariable String officeCode) {
         return service.getEmployeeByOfficeCode(officeCode);
     }
+
+    @PostMapping("/{officeCode}/employees")
+    public Set<Employee> addOffice(@PathVariable String officeCode, @RequestBody Employee employee) {
+        return service.addEmployee(officeCode, employee);
+    }
 }
