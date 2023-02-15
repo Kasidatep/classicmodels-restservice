@@ -59,7 +59,6 @@ public class OfficeService {
     public Set<Employee> addEmployee(String officeCode, Employee employee) {
         Office office = getOfficeById(officeCode);
         employeeService.addEmployee(employee, office);
-        repository.saveAndFlush(office);
         return getEmployeeByOfficeCode(officeCode);
     }
 }
