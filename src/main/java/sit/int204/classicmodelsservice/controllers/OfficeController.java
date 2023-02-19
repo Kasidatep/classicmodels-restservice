@@ -12,6 +12,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api/offices")
 public class OfficeController {
+
     @Autowired
     public OfficeService service;
 
@@ -46,7 +47,7 @@ public class OfficeController {
     }
 
     @PostMapping("/{officeCode}/employees")
-    public Set<Employee> addOffice(@PathVariable String officeCode, @RequestBody Employee employee) {
-        return service.addEmployee(officeCode, employee);
+    public void addEmployee(@PathVariable String officeCode, @RequestBody Employee employee) {
+        service.addEmployee(officeCode, employee);
     }
 }

@@ -28,7 +28,6 @@ public class EmployeeService {
         repository.saveAndFlush(employee);
     }
 
-
     public Employee updateEmployee(String id, Employee employee) {
         Employee oldEmployee = getEmployeeById(id);
         oldEmployee.setFirstName(employee.getFirstName());
@@ -42,5 +41,15 @@ public class EmployeeService {
 
     public void deleteEmployee(String id) {
         repository.deleteById(Integer.valueOf(id));
+    }
+
+    public Office getOfficeByEmployeeId(String id) {
+        Employee employee = getEmployeeById(id);
+        return employee.getOffice();
+    }
+
+    public Employee getEmployeeReportTo(String id) {
+        Employee employee = getEmployeeById(id);
+        return employee.getEmployees();
     }
 }
