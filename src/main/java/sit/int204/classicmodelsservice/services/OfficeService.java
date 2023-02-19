@@ -56,9 +56,8 @@ public class OfficeService {
         return office.getEmployees();
     }
 
-    public Set<Employee> addEmployee(String officeCode, Employee employee) {
+    public void addEmployee(String officeCode, Employee employee) {
         Office office = getOfficeById(officeCode);
         employeeService.addEmployee(employee, office);
-        return getEmployeeByOfficeCode(officeCode);
     }
 }

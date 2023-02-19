@@ -6,21 +6,23 @@ import sit.int204.classicmodelsservice.entities.Employee;
 import sit.int204.classicmodelsservice.entities.Office;
 import sit.int204.classicmodelsservice.services.OfficeService;
 
+import java.net.HttpRetryException;
 import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/api/offices")
 public class OfficeController {
+
     @Autowired
-    public OfficeService service;
+    private OfficeService service;
 
     @GetMapping("")
     public List<Office> getAllOffice() {
         return service.getOffice();
     }
 
-    @GetMapping("/{officeCode}")
+    @GetMapping("{officeCode}")
     public Office getOfficeById(@PathVariable String officeCode) {
         return service.getOfficeById(officeCode);
     }
@@ -46,7 +48,7 @@ public class OfficeController {
     }
 
     @PostMapping("/{officeCode}/employees")
-    public Set<Employee> addOffice(@PathVariable String officeCode, @RequestBody Employee employee) {
-        return service.addEmployee(officeCode, employee);
+    public void addEmployee(@PathVariable String officeCode, @RequestBody Employee employee) {
+        service.addEmployee(officeCode, employee);
     }
 }
