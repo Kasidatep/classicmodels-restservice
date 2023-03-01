@@ -41,7 +41,8 @@ public class ProductController {
     }
 
     @GetMapping("/{productLine}")
-    public List<Product> getProductByProductLine(@PathVariable String productLine, @RequestParam(defaultValue = "productCode") String sortBy){
+    public List<Product> getProductByProductLine(@PathVariable String productLine,
+                                                 @RequestParam(defaultValue = "productCode") String sortBy){
         return productService.getProductByProductLine(productLine, sortBy);
     }
 
