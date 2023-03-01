@@ -28,8 +28,9 @@ public class ProductService {
         return productRepository.findProductByPriceBetweenOrderByPriceAsc(low, high);
     }
 
-    public List<Product> getProductByProductLine(String productLine) {
-        return productRepository.findProductByProductLineContainingIgnoreCase(productLine);
+    public List<Product> getProductByProductLine(String productLine, String sortBy) {
+        Sort sort = Sort.by(sortBy);
+        return productRepository.findProductByProductLineContainingIgnoreCase(productLine, sort);
     }
 
     public Product updateProduct(String productCode, Product product) {

@@ -14,7 +14,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/pages")
+    @GetMapping("")
     public Page<Product> getProductsPages(
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
@@ -23,7 +23,7 @@ public class ProductController {
         return productService.getProducts(page,size,sortBy);
     }
 
-    @GetMapping("")
+    @GetMapping("/list")
     public List<Product> getProducts(
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
@@ -31,6 +31,7 @@ public class ProductController {
     ){
         return getProductsPages(page, size, sortBy).getContent();
     }
+
     @GetMapping("/{low}/{high}")
     public List<Product> getProductBetweenPrice(
             @PathVariable Double low,
@@ -40,8 +41,8 @@ public class ProductController {
     }
 
     @GetMapping("/{productLine}")
-    public List<Product> getProductByProductLine(@PathVariable String productLine){
-        return productService.getProductByProductLine(productLine);
+    public List<Product> getProductByProductLine(@PathVariable String productLine, @RequestParam(defaultValue = "productCode") String sortBy){
+        return productService.getProductByProductLine(productLine, sortBy);
     }
 
     @PutMapping("/{productCode}")
