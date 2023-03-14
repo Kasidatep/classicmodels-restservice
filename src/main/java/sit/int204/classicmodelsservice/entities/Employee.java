@@ -25,7 +25,7 @@ public class Employee {
     private String extension;
     @Column(name = "email", nullable = false, length = 100)
     private String email;
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "reportsTo")
     private Employee employees;
