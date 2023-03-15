@@ -35,9 +35,9 @@ public class CustomerController {
         return simpleCustomerDtoList;
     }
 
-    @GetMapping("/pages")
-    public PageDto<SimpleCustomerDto> getCustomersPages(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-        Page<Customer> customerList = customerService.getCustomerPages(page, size);
-        return listMapper.toPageDto(customerList, SimpleCustomerDto.class, modelMapper);
-    }
+//    @GetMapping("/pages")
+//    public PageDto<SimpleCustomerDto> getCustomersPages(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+//        Page<Customer> customerList = customerService.getCustomerPages(page, size);
+//        return listMapper.toPageDto(customerList, SimpleCustomerDto.class, modelMapper);
+//    }
 }
