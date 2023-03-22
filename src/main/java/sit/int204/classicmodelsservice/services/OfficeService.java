@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import sit.int204.classicmodelsservice.entities.Employee;
 import sit.int204.classicmodelsservice.entities.Office;
+import sit.int204.classicmodelsservice.exceptions.ResourceNotFoundException;
 import sit.int204.classicmodelsservice.repositories.OfficeRepository;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class OfficeService {
     }
 
     public Office getOfficeById(String officeCode) {
-        return repository.findById(officeCode).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND, "Office Id " + officeCode + " DOES NOT EXIST !!!"));
+        return repository.findById(officeCode).orElseThrow(() -> new ResourceNotFoundException("[WARNING]: Office Id " + officeCode + " DOES NOT EXIST !!!"));
     }
 
     public void addOffice(Office office) {

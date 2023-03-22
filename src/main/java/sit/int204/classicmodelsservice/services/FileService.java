@@ -6,6 +6,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import sit.int204.classicmodelsservice.exceptions.ResourceNotFoundException;
 import sit.int204.classicmodelsservice.properties.FileStorageProperties;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Locale;
 
 @Service
 public class FileService{
@@ -27,6 +29,8 @@ public class FileService{
         }
     }
     public String store(MultipartFile file) {
+//        String x = null;
+//        x.toLowerCase(Locale.ROOT);
         // Normalize file name
         String fileName= StringUtils.cleanPath(file.getOriginalFilename());
         try {
@@ -44,14 +48,16 @@ public class FileService{
         }
     }
     public Resource loadFileAsResource(String fileName) {
+//        Integer.valueOf("asde");
         try {
             Path filePath= this.fileStorageLocation.resolve(fileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
-            if (resource.exists()) {
-                return resource;
-            } else {
-                throw new RuntimeException("File not found " + fileName);
-            }
+            return resource;
+//            if (resource.exists()) {
+//                return resource;
+//          }  else {
+//                throw new ResourceNotFoundException("[WARNING]: File not found " + fileName);
+//            }
         } catch (MalformedURLException ex) {
             throw new RuntimeException("File operation error: " + fileName, ex);
         }
