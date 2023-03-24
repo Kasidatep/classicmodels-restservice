@@ -50,4 +50,8 @@ public class Customer {
     @Column(name = "creditLimit")
     private Double creditLimit;
 
+    @Column(name = "password", length = 250)
+    private String password;
+
+
 }
