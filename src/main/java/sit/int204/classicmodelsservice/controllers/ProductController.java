@@ -19,8 +19,9 @@ public class ProductController {
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "productCode") String sortBy
-    ){
-        return productService.getProducts(page,size,sortBy);
+    ) {
+
+        return productService.getProducts(page, size, sortBy);
     }
 
     @GetMapping("/list")
@@ -28,7 +29,7 @@ public class ProductController {
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "productCode") String sortBy
-    ){
+    ) {
         return getProductsPages(page, size, sortBy).getContent();
     }
 
@@ -36,23 +37,23 @@ public class ProductController {
     public List<Product> getProductBetweenPrice(
             @PathVariable Double low,
             @PathVariable Double high
-    ){
-        return productService.getProductBetweenPrice(low,high);
+    ) {
+        return productService.getProductBetweenPrice(low, high);
     }
 
     @GetMapping("/{productLine}")
     public List<Product> getProductByProductLine(@PathVariable String productLine,
-                                                 @RequestParam(defaultValue = "productCode") String sortBy){
+                                                 @RequestParam(defaultValue = "productCode") String sortBy) {
         return productService.getProductByProductLine(productLine, sortBy);
     }
 
     @PutMapping("/{productCode}")
-    public Product updateProduct(@PathVariable String productCode, @RequestBody Product product){
+    public Product updateProduct(@PathVariable String productCode, @RequestBody Product product) {
         return productService.updateProduct(productCode, product);
     }
 
     @PostMapping("")
-    public Product addProduct(@RequestBody Product product){
+    public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
 

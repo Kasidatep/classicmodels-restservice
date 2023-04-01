@@ -36,19 +36,21 @@ public class CustomerController {
         return modelMapper.map(customerService.getCustomerById(customerId), SimpleCustomerDto.class);
     }
 
+
+    @GetMapping("")
+    public List<SimpleCustomerDto> getCustomers() {
+        System.out.println("gg");
+        List<Customer> customerList = customerService.getCustomer();
+        List<SimpleCustomerDto> simpleCustomerDtoList = customerList.stream().map(c -> modelMapper.map(c, SimpleCustomerDto.class)).collect(Collectors.toList());
+        return simpleCustomerDtoList;
+    }
+
+
     @PostMapping("/auth")
     public SimpleCustomerDto getCustomerAuthentication(@RequestParam("username") String username, @RequestParam("password") String password) {
         Customer customer = customerService.getCustomerAuthentication(username, password);
         return modelMapper.map(customer, SimpleCustomerDto.class);
-        
-    }
 
-
-    @GetMapping("")
-    public List<SimpleCustomerDto> getCustomers() {
-        List<Customer> customerList = customerService.getCustomer();
-        List<SimpleCustomerDto> simpleCustomerDtoList = customerList.stream().map(c -> modelMapper.map(c, SimpleCustomerDto.class)).collect(Collectors.toList());
-        return simpleCustomerDtoList;
     }
 
     @ExceptionHandler(HttpClientErrorException.class)

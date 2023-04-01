@@ -12,7 +12,6 @@ import sit.int204.classicmodelsservice.entities.Customer;
 import sit.int204.classicmodelsservice.repositories.CustomerRepository;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CustomerService {
